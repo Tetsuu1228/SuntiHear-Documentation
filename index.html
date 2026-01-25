@@ -16,12 +16,674 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
     <!-- Custome Css For This Page Only  -->
     <style>
+      :root {
+        --primary-color: #6366f1;
+        --text-light: #4b5563;
+        --bg-gradient: linear-gradient(135deg, #fce7f3 0%, #fdf2f8 100%);
+      }
+
+      .bg-gradient-purple { background: var(--bg-gradient); position: relative; overflow: hidden; }
+      .text-primary-accent { color: var(--primary-color); }
+      .badge-custom { background-color: #ede9fe; color: var(--primary-color); }
+      .badge-icon-custom { width: 16px; height: 16px; background-color: var(--primary-color); display: flex; align-items: center; justify-content: center; }
+      .avatar-custom { width: 28px; height: 28px; background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); border: 2px solid white; margin-left: -8px; }
+      .avatar-custom:first-child { margin-left: 0; }
+      .hero-section { background: linear-gradient(135deg, rgba(243, 240, 255, 0.9) 0%, rgba(250, 245, 255, 0.9) 100%), radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%) !important; }
+      .alert-card-custom { background-color: white; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); position: absolute; top: 20px; right: 20px; z-index: 10; }
+      .alert-icon-success { width: 40px; height: 40px; background-color: #10b981; color: white; font-size: 20px; }
+      .wristband-icon-custom { width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-color) 0%, #8b5cf6 100%); color: white; font-size: 56px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3); }
+      .metric-card-custom { background-color: white; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); position: absolute; bottom: 20px; left: 20px; z-index: 10; }
+      .metric-icon-custom { width: 40px; height: 40px; background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); color: white; }
+      .navbar-custom { background: white; border-radius: 50px; box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15), 0 4px 12px rgba(0, 0, 0, 0.08); border: 1px solid rgba(99, 102, 241, 0.1); position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1030; width: 90%; max-width: 900px; padding: 12px 32px !important; }
+      .navbar-custom .navbar-nav { justify-content: center; width: 100%; }
+      .navbar-custom .nav-link { color: #0f172a; font-weight: 600; transition: color 0.2s ease, transform 0.2s ease; }
+      .navbar-custom .nav-link:hover { color: #6366f1; transform: translateY(-1px); }
+      .stats-icon i { font-size: 18px; line-height: 1; }
+      .alert-icon-success i { font-size: 18px; }
+      .wristband-icon-custom i { font-size: 40px; }
+      .metric-icon-custom i { font-size: 18px; }
+      .btn-gradient { background: linear-gradient(90deg, #6a8bff 0%, #a441ff 100%); color: white; border: none; border-radius: 999px; padding: 6px 16px; font-weight: 700; font-size: 14px; line-height: 1; box-shadow: 0 6px 18px rgba(99, 102, 241, 0.25); transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease; }
+      .btn-gradient:hover { filter: brightness(1.07); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(99, 102, 241, 0.3); }
+      .btn-hero-primary { background-color: #6366f1; color: white; border: none; border-radius: 12px; padding: 12px 26px; font-weight: 700; font-size: 15px; box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2); transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease; }
+      .btn-hero-primary:hover { background-color: #4f46e5; transform: translateY(-1px); box-shadow: 0 12px 28px rgba(99, 102, 241, 0.25); }
+      .stats-card { background: linear-gradient(135deg, #f9f9ff 0%, #ffffff 100%); border: 1px solid #f1f5f9; border-radius: 14px; box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08); padding: 26px; min-height: 140px; transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: pointer; }
+      .stats-card:hover { transform: translateY(-4px); }
+      .stats-card-blue:hover { box-shadow: 0 20px 40px rgba(59, 130, 246, 0.25); border-color: rgba(59, 130, 246, 0.3); }
+      .stats-card-green:hover { box-shadow: 0 20px 40px rgba(16, 185, 129, 0.25); border-color: rgba(16, 185, 129, 0.3); }
+      .stats-card-orange:hover { box-shadow: 0 20px 40px rgba(249, 115, 22, 0.25); border-color: rgba(249, 115, 22, 0.3); }
+      .stats-icon { width: 40px; height: 40px; border-radius: 12px; display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 18px; margin-bottom: 10px; }
+      .section-divider { height: 1px; background: linear-gradient(90deg, transparent 0%, #e5e7eb 20%, #e5e7eb 80%, transparent 100%); margin: 40px 0; }
+      .section-eyebrow { letter-spacing: 1px; font-size: 12px; font-weight: 700; color: #6366f1; text-transform: uppercase; }
+      .dark-card { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 10px 25px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1); transform: perspective(1000px) rotateY(-2deg); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .dark-card:hover { transform: perspective(1000px) rotateY(0deg) translateY(-5px); box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35), 0 15px 30px rgba(0, 0, 0, 0.25); }
+      .feature-icon-box { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.1); }
+      .feature-list-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; padding: 16px; border-radius: 12px; background: rgba(249, 250, 251, 0.5); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+      .feature-list-item:hover { transform: translateX(5px) translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.06); }
+      .purple-card { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); color: white; border-radius: 20px; padding: 40px; box-shadow: 0 20px 50px rgba(99, 102, 241, 0.3), 0 10px 25px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2); transform: perspective(1000px) rotateY(2deg); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+      .purple-card:hover { transform: perspective(1000px) rotateY(0deg) translateY(-5px); box-shadow: 0 25px 60px rgba(99, 102, 241, 0.35), 0 15px 30px rgba(99, 102, 241, 0.25); }
+      .check-item { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+      .check-icon { width: 24px; height: 24px; border-radius: 50%; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+      .capability-card { border-radius: 20px; padding: 30px; color: white; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); transition: transform 0.3s ease, box-shadow 0.3s ease; position: relative; overflow: hidden; }
+      .capability-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); }
+      .capability-card-large { min-height: 380px; }
+      .capability-card-medium { min-height: 180px; }
+      .capability-card-small { min-height: 140px; }
+      .capability-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255, 255, 255, 0.2); display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 16px; }
+      .gradient-orange-pink { background: linear-gradient(135deg, #ff6b35 0%, #f72585 100%); }
+      .gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); }
+      .gradient-green { background: linear-gradient(135deg, #10b981 0%, #34d399 100%); }
+      .gradient-purple { background: linear-gradient(135deg, #8b5cf6 0%, #a855f7 100%); }
+      .gradient-orange { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); }
+      .capability-content-area { background: rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 40px; margin-top: 20px; text-align: center; color: rgba(255, 255, 255, 0.7); font-size: 14px; min-height: 150px; display: flex; align-items: center; justify-content: center; }
+      .process-step-card { background: white; border-radius: 16px; padding: 24px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
+      .process-step-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); }
+      .process-icon { width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 26px; color: white; margin-bottom: 16px; }
+      .process-flow-visual { background: #f8f9fa; border-radius: 20px; padding: 60px 40px; text-align: center; color: #94a3b8; font-size: 15px; min-height: 280px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06); }
+      .dark-section { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 80px 0; }
+      .setup-card { background: rgba(30, 41, 59, 0.8); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px; padding: 0; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
+      .setup-card:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); }
+      .setup-card-image { width: 100%; height: 180px; object-fit: cover; background: #334155; }
+      .setup-card-content { padding: 24px; }
+      .setup-step-number { font-size: 36px; font-weight: 800; color: #6366f1; line-height: 1; margin-bottom: 12px; }
+      .student-card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; }
+      .student-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15); }
+      .student-card-image { width: 100%; height: 220px; object-fit: cover; background: #e2e8f0; position: relative; }
+      .student-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent); color: white; }
+      footer { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); color: white; padding: 60px 0 30px; }
+      .footer-link { color: #94a3b8; text-decoration: none; font-size: 14px; transition: color 0.2s ease; }
+      .footer-link:hover { color: #6366f1; }
+      .social-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(255, 255, 255, 0.1); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 18px; transition: all 0.3s ease; text-decoration: none; }
+      .social-icon:hover { background: #6366f1; color: white; transform: translateY(-3px); }
     </style>
 <body>
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+      <div class="container-fluid px-0">
+        <a class="navbar-brand fw-bold text-primary-accent fs-5 me-auto" href="#">SUNTIHEAR</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav gap-4">
+            <li class="nav-item"><a class="nav-link text-dark" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#wristband-features">Features</a></li>
+            <li class="nav-item"><a class="nav-link text-dark" href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <!-- HERO SECTION -->
+    <section class="py-5 hero-section" style="padding: 120px 48px 80px 48px !important;">
+      <div class="container" style="max-width: 1400px;">
+        <div class="row g-5 align-items-center">
+          <!-- LEFT -->
+          <div class="col-lg-6 d-flex flex-column">
+            <div class="badge-custom px-3 py-2 rounded-pill mb-4 d-inline-flex align-items-center gap-2 w-fit">
+              <span class="badge-icon-custom rounded-circle d-flex align-items-center justify-content-center text-white"></span>
+              <span class="small fw-bold">Next-Gen Accessibility Tech</span>
+            </div>
+
+            <h1 class="fw-bold mb-3" style="font-size: 64px; line-height: 1.1; color: #000;">
+              SUNTI<span class="text-primary-accent">HEAR</span>
+            </h1>
+
+            <h2 class="h4 fw-bold mb-3" style="color: var(--text-light);">A wearable sound alert system for safer daily living</h2>
+
+            <p class="fs-6 mb-4" style="color: var(--text-light); line-height: 1.7;">
+              Sunti Hear is a device that helps deaf and hard-of-hearing people know when important sounds happen around them. It listens for sounds like alarms or doorbells and shows clear visual alerts, making daily life safer and easier.
+            </p>
+          </div>
+
+          <!-- RIGHT -->
+          <div class="col-lg-6">
+            <div class="bg-gradient-purple rounded-4 p-5" style="min-height: 500px; position: relative;">
+              <!-- ALERT CARD - TOP RIGHT -->
+              <div class="alert-card-custom rounded-3 p-3 d-flex align-items-center gap-3" style="width: fit-content;">
+                <span class="alert-icon-success bi bi-check 2 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"></span>
+                <div>
+                  <div class="small fw-bold text-muted text-uppercase">Alert Sent</div>
+                  <div class="fw-bold">Fire Alarm</div>
+                </div>
+              </div>
+
+              <!-- WRISTBAND - CENTER -->
+               <img src="product.png" alt="" srcset="">
+
+              <!-- METRIC CARD - BOTTOM LEFT -->
+              <div class="metric-card-custom rounded-3 p-3 d-flex align-items-center gap-3" style="width: fit-content;">
+                <span class="metric-icon-custom bi bi-graph-up-arrow rounded d-flex align-items-center justify-content-center flex-shrink-0"></span>
+                <div>
+                  <div class="small fw-bold text-muted">Accuracy</div>
+                  <div class="fw-bold">85.5%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="py-4" style="padding: 40px 48px !important;">
+      <div class="container" style="max-width: 1200px;">
+        <div class="row g-3 g-md-4 justify-content-center">
+          <div class="col-6 col-md-3">
+            <div class="stats-card stats-card-blue h-100 text-center">
+              <div class="stats-icon bi bi-lightning-charge" style="background: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);"></div>
+              <div class="fw-bold" style="font-size: 20px; color: #2563eb;">&lt;1s</div>
+              <div class="text-muted" style="font-size: 12px;">Response Time</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stats-card stats-card-green h-100 text-center">
+              <div class="stats-icon bi bi-shield" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);"></div>
+              <div class="fw-bold" style="font-size: 20px; color: #0f9f6e;">99.9%</div>
+              <div class="text-muted" style="font-size: 12px;">Accuracy</div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stats-card stats-card-orange h-100 text-center">
+              <div class="stats-icon bi bi-broadcast" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);"></div>
+              <div class="fw-bold" style="font-size: 20px; color: #ea580c;">24/7</div>
+              <div class="text-muted" style="font-size: 12px;">Always On</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="text-center mb-4">
+          <div class="section-eyebrow mb-3">THE INNOVATION</div>
+          <h3 class="fw-bold mb-2" style="font-size: 40px;">What is <span class="text-primary-accent">SUNTIHEAR?</span></h3>
+          <div class="text-muted" style="font-size: 16px;">Two devices working as one intelligent system</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WRISTBAND & FEATURES SECTION -->
+    <section class="py-5" id="wristband-features" style="padding: 60px 48px !important;">
+      <div class="container" style="max-width: 1200px;">
+        <div class="row g-5 align-items-center">
+          <!-- LEFT - SMART WRISTBAND -->
+          <div class="col-lg-6">
+            <div class="dark-card">
+              <div class="d-inline-flex align-items-center justify-content-center mb-3" style="width: 48px; height: 48px; background: rgba(99, 102, 241, 0.2); border-radius: 12px;">
+                <i class="bi bi-smartwatch" style="font-size: 24px; color: #6366f1;"></i>
+              </div>
+              
+              <h3 class="fw-bold mb-3" style="font-size: 32px;">Smart Wristband</h3>
+              <p class="mb-4" style="color: #cbd5e1; line-height: 1.7; font-size: 15px;">
+                Sleek, comfortable, and powerful. Continuously monitors your environment with advanced AI, delivering instant alerts through vibration and display.
+              </p>
+
+              <div class="bg-secondary rounded-3 p-4 text-center position-relative" style="background: rgba(255, 255, 255, 0.05) !important; min-height: 280px;">
+                <img src="placeholder-wristband.jpg" alt="3D Wristband" class="img-fluid" style="max-height: 250px; opacity: 0.7;">
+                <div class="position-absolute top-50 start-50 translate-middle text-muted" style="font-size: 13px;">[3D Wristband Interactive]</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT - KEY FEATURES -->
+          <div class="col-lg-6">
+            <div class="d-inline-flex align-items-center justify-content-center mb-4" style="width: 56px; height: 56px; background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); border-radius: 14px;">
+              <i class="bi bi-stars" style="font-size: 26px; color: white;"></i>
+            </div>
+
+            <h3 class="fw-bold mb-4" style="font-size: 32px;">Key Features</h3>
+
+            <div class="feature-list-item">
+              <div class="feature-icon-box" style="background: rgba(139, 92, 246, 0.1);">
+                <i class="bi bi-mic-fill" style="color: #8b5cf6;"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size: 16px;">AI Sound Detection</h5>
+                <p class="text-muted mb-0" style="font-size: 13px;">YAMNet powered</p>
+              </div>
+            </div>
+
+            <div class="feature-list-item">
+              <div class="feature-icon-box" style="background: rgba(59, 130, 246, 0.1);">
+                <i class="bi bi-phone-vibrate" style="color: #3b82f6;"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size: 16px;">Haptic Feedback</h5>
+                <p class="text-muted mb-0" style="font-size: 13px;">Instant vibration</p>
+              </div>
+            </div>
+
+            <div class="feature-list-item">
+              <div class="feature-icon-box" style="background: rgba(16, 185, 129, 0.1);">
+                <i class="bi bi-eye-fill" style="color: #10b981;"></i>
+              </div>
+              <div>
+                <h5 class="fw-bold mb-1" style="font-size: 16px;">Visual Alerts</h5>
+                <p class="text-muted mb-0" style="font-size: 13px;">OLED display</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile App Section -->
+    <div class="container my-1 py-1">
+      <div class="row">
+        <div class="col-11 mx-auto">
+          <div class="purple-card">
+            <div class="row align-items-center">
+              <div class="col-lg-6 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                  <i class="bi bi-phone" style="font-size: 28px;"></i>
+                  <h2 class="mb-0" style="font-size: 32px; font-weight: 700;">Mobile App</h2>
+                </div>
+                <p class="mb-4" style="font-size: 16px; line-height: 1.6; opacity: 0.95;">
+                  Your command center. Customize alerts, track history, view sound locations on maps, and control every aspect of your SUNTIHEAR system.
+                </p>
+                <div class="check-item">
+                  <div class="check-icon">
+                    <i class="bi bi-check-lg"></i>
+                  </div>
+                  <span style="font-size: 15px;">Real-time notification history</span>
+                </div>
+                <div class="check-item">
+                  <div class="check-icon">
+                    <i class="bi bi-check-lg"></i>
+                  </div>
+                  <span style="font-size: 15px;">Interactive sound location maps</span>
+                </div>
+                <div class="check-item">
+                  <div class="check-icon">
+                    <i class="bi bi-check-lg"></i>
+                  </div>
+                  <span style="font-size: 15px;">Customizable alert preferences</span>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="d-flex justify-content-center">
+                  <div style="background: rgba(255, 255, 255, 0.15); border-radius: 20px; padding: 60px 100px; backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2);">
+                    <div style="color: rgba(255, 255, 255, 0.7); font-size: 14px; text-align: center;">
+                      <i class="bi bi-phone" style="font-size: 80px;"></i>
+                      <div class="mt-3">App Mockup</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Built for Real Life Section -->
+    <div class="container my-5 py-4">
+      <div class="text-center mb-5">
+        <div class="section-eyebrow mb-2">POWERFUL CAPABILITIES</div>
+        <h2 style="font-size: 48px; font-weight: 800; color: #1e293b;">
+          Built for <span style="color: #6366f1;">Real Life</span>
+        </h2>
+      </div>
+
+      <div class="row g-3">
+        <!-- AI Sound Recognition - Large Card -->
+        <div class="col-lg-6 col-md-12">
+          <div class="capability-card capability-card-large gradient-orange-pink">
+            <div class="capability-icon">
+              <i class="bi bi-volume-up-fill"></i>
+            </div>
+            <h3 class="fw-bold mb-2" style="font-size: 24px;">AI Sound Recognition</h3>
+            <p class="mb-3" style="font-size: 14px; opacity: 0.9;">Powered by Apple's advanced neural network, AI-ARTIFICIAL identifies over 200 different sound types with 99.9% accuracy</p>
+            <div class="capability-content-area">
+              <div>200 Sound Types Identification</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-lg-6 col-md-12">
+          <div class="row g-3">
+            <!-- Dual Alerts - Medium Card -->
+            <div class="col-12">
+              <div class="capability-card capability-card-medium gradient-blue">
+                <div class="capability-icon">
+                  <i class="bi bi-bell-fill"></i>
+                </div>
+                <h3 class="fw-bold mb-2" style="font-size: 20px;">Dual Alerts</h3>
+                <p class="mb-0" style="font-size: 13px; opacity: 0.9;">Wristband + phone notification for critical sounds</p>
+              </div>
+            </div>
+
+            <!-- Customizable - Medium Card -->
+            <div class="col-12">
+              <div class="capability-card capability-card-medium gradient-green">
+                <div class="capability-icon">
+                  <i class="bi bi-sliders"></i>
+                </div>
+                <h3 class="fw-bold mb-2" style="font-size: 20px;">Customizable</h3>
+                <p class="mb-0" style="font-size: 13px; opacity: 0.9;">Control every aspect of your lifestyle</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Three Cards -->
+        <div class="col-lg-4 col-md-4">
+          <div class="capability-card capability-card-small gradient-purple">
+            <div class="capability-icon">
+              <i class="bi bi-reception-4"></i>
+            </div>
+            <h3 class="fw-bold mb-2" style="font-size: 18px;">Noise Filter</h3>
+            <p class="mb-0" style="font-size: 12px; opacity: 0.9;">Filter by day, focuses on what matters</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+          <div class="capability-card capability-card-small gradient-orange">
+            <div class="capability-icon">
+              <i class="bi bi-chat-text-fill"></i>
+            </div>
+            <h3 class="fw-bold mb-2" style="font-size: 18px;">Speech-to-Text</h3>
+            <p class="mb-0" style="font-size: 12px; opacity: 0.9;">Real-time transcription of conversations</p>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4">
+          <div class="capability-card capability-card-small gradient-purple">
+            <div class="capability-icon">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <h3 class="fw-bold mb-2" style="font-size: 18px;">History Tracking</h3>
+            <p class="mb-0" style="font-size: 12px; opacity: 0.9;">Review and track your progress</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="container my-5 py-5" id="how-it-works">
+      <div class="text-center mb-5">
+        <div class="section-eyebrow mb-2">THE PROCESS</div>
+        <h2 style="font-size: 48px; font-weight: 800; color: #1e293b;">
+          How It <span style="color: #6366f1;">Works</span>
+        </h2>
+        <p class="text-muted mt-3" style="font-size: 16px;">from sound to alert in milliseconds</p>
+      </div>
+
+      <div class="row g-4 mb-5">
+        <!-- Step 1: Listen -->
+        <div class="col-lg col-md-6 col-sm-6">
+          <div class="process-step-card">
+            <div class="process-icon" style="background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);">
+              <i class="bi bi-soundwave"></i>
+            </div>
+            <h4 class="fw-bold mb-2" style="font-size: 18px; color: #1e293b;">Listen</h4>
+            <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Microphone captures environmental sounds</p>
+          </div>
+        </div>
+
+        <!-- Step 2: Analyze -->
+        <div class="col-lg col-md-6 col-sm-6">
+          <div class="process-step-card">
+            <div class="process-icon" style="background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);">
+              <i class="bi bi-cpu"></i>
+            </div>
+            <h4 class="fw-bold mb-2" style="font-size: 18px; color: #1e293b;">Analyze</h4>
+            <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">AI processes sound signatures</p>
+          </div>
+        </div>
+
+        <!-- Step 3: Classify -->
+        <div class="col-lg col-md-6 col-sm-6">
+          <div class="process-step-card">
+            <div class="process-icon" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <h4 class="fw-bold mb-2" style="font-size: 18px; color: #1e293b;">Classify</h4>
+            <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Identify dangerous or priority items</p>
+          </div>
+        </div>
+
+        <!-- Step 4: Alert -->
+        <div class="col-lg col-md-6 col-sm-6">
+          <div class="process-step-card">
+            <div class="process-icon" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);">
+              <i class="bi bi-lock-fill"></i>
+            </div>
+            <h4 class="fw-bold mb-2" style="font-size: 18px; color: #1e293b;">Alert</h4>
+            <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Send instant alert to wristband</p>
+          </div>
+        </div>
+
+        <!-- Step 5: Respond -->
+        <div class="col-lg col-md-6 col-sm-6">
+          <div class="process-step-card">
+            <div class="process-icon" style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);">
+              <i class="bi bi-arrow-repeat"></i>
+            </div>
+            <h4 class="fw-bold mb-2" style="font-size: 18px; color: #1e293b;">Respond</h4>
+            <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Take action from notification</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Process Flow Visual -->
+      <div class="row">
+        <div class="col-12">
+          <div class="process-flow-visual">
+            <div>
+              <i class="bi bi-diagram-3" style="font-size: 64px; margin-bottom: 16px;"></i>
+              <div>AI Automated Process Flow</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ready in 3 Steps Section -->
+    <div class="dark-section">
+      <div class="container">
+        <div class="text-center mb-5">
+          <div class="mb-2" style="font-size: 12px; font-weight: 700; letter-spacing: 1.5px; color: #6366f1; text-transform: uppercase;">QUICK SETUP</div>
+          <h2 style="font-size: 48px; font-weight: 800;">
+            Ready in<br><span style="color: #6366f1;">3 Steps</span>
+          </h2>
+        </div>
+
+        <div class="row g-4">
+          <!-- Step 1 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="setup-card">
+              <div class="setup-card-image d-flex align-items-center justify-content-center">
+                <i class="bi bi-smartwatch" style="font-size: 64px; color: #94a3b8;"></i>
+              </div>
+              <div class="setup-card-content">
+                <div class="setup-step-number">01</div>
+                <h4 class="fw-bold mb-2" style="font-size: 20px;">Wear & Power On</h4>
+                <p class="mb-0" style="font-size: 14px; color: #94a3b8; line-height: 1.6;">Put on your wristband, download app from the App Store / Google Play</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="setup-card">
+              <div class="setup-card-image d-flex align-items-center justify-content-center">
+                <i class="bi bi-laptop" style="font-size: 64px; color: #94a3b8;"></i>
+              </div>
+              <div class="setup-card-content">
+                <div class="setup-step-number">02</div>
+                <h4 class="fw-bold mb-2" style="font-size: 20px;">Connect via App</h4>
+                <p class="mb-0" style="font-size: 14px; color: #94a3b8; line-height: 1.6;">Open the SuntiHear app, enable Bluetooth, and pair your device in seconds</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="col-lg-4 col-md-6">
+            <div class="setup-card">
+              <div class="setup-card-image d-flex align-items-center justify-content-center">
+                <i class="bi bi-gear-fill" style="font-size: 64px; color: #94a3b8;"></i>
+              </div>
+              <div class="setup-card-content">
+                <div class="setup-step-number">03</div>
+                <h4 class="fw-bold mb-2" style="font-size: 20px;">Customize & Go</h4>
+                <p class="mb-0" style="font-size: 14px; color: #94a3b8; line-height: 1.6;">Set your preferences, choose alert types, and you're protected. That's it!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Made for Students Section -->
+    <div class="container my-5 py-5">
+      <div class="text-center mb-5">
+        <div class="section-eyebrow mb-2">JOIN THE MOVEMENT</div>
+        <h2 style="font-size: 48px; font-weight: 800; color: #1e293b;">
+          Made for <span style="color: #6366f1;">Students</span>
+        </h2>
+      </div>
+
+      <div class="row g-4">
+        <!-- Deaf Students -->
+        <div class="col-lg-4 col-md-6">
+          <div class="student-card">
+            <div class="student-card-image d-flex align-items-center justify-content-center position-relative">
+              <i class="bi bi-person-check-fill" style="font-size: 80px; color: #cbd5e1;"></i>
+              <div class="student-card-overlay">
+                <h4 class="fw-bold mb-1" style="font-size: 20px;">Deaf Students</h4>
+              </div>
+            </div>
+            <div class="p-3">
+              <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Feel confident with automatic haptic notifications</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hard-of-Hearing -->
+        <div class="col-lg-4 col-md-6">
+          <div class="student-card">
+            <div class="student-card-image d-flex align-items-center justify-content-center position-relative">
+              <i class="bi bi-ear-fill" style="font-size: 80px; color: #cbd5e1;"></i>
+              <div class="student-card-overlay">
+                <h4 class="fw-bold mb-1" style="font-size: 20px;">Hard-of-Hearing</h4>
+              </div>
+            </div>
+            <div class="p-3">
+              <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Enhanced awareness when you need it most</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Safety Advocates -->
+        <div class="col-lg-4 col-md-6">
+          <div class="student-card">
+            <div class="student-card-image d-flex align-items-center justify-content-center position-relative">
+              <i class="bi bi-shield-fill-check" style="font-size: 80px; color: #cbd5e1;"></i>
+              <div class="student-card-overlay">
+                <h4 class="fw-bold mb-1" style="font-size: 20px;">Safety Advocates</h4>
+              </div>
+            </div>
+            <div class="p-3">
+              <p class="text-muted mb-0" style="font-size: 13px; line-height: 1.6;">Extra peace of mind in any environment</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row g-4">
+          <!-- Brand Column -->
+          <div class="col-lg-4 col-md-6 mb-4">
+            <h3 class="fw-bold mb-3" style="font-size: 24px;">
+              <span style="color: #6366f1;">SUNTI</span>HEAR
+            </h3>
+            <p class="mb-4" style="color: #94a3b8; font-size: 14px; line-height: 1.7;">
+              Empowering the deaf and hard-of-hearing community with AI-powered sound awareness technology.
+            </p>
+            <div class="d-flex gap-3">
+              <a href="#" class="social-icon">
+                <i class="bi bi-facebook"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="bi bi-twitter"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="bi bi-instagram"></i>
+              </a>
+              <a href="#" class="social-icon">
+                <i class="bi bi-linkedin"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Product Column -->
+          <div class="col-lg-2 col-md-6 col-6 mb-4">
+            <h5 class="fw-bold mb-3" style="font-size: 16px;">Product</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="footer-link">Features</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">How It Works</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Pricing</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">FAQ</a></li>
+            </ul>
+          </div>
+
+          <!-- Company Column -->
+          <div class="col-lg-2 col-md-6 col-6 mb-4">
+            <h5 class="fw-bold mb-3" style="font-size: 16px;">Company</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="footer-link">About Us</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Careers</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Blog</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- Support Column -->
+          <div class="col-lg-2 col-md-6 col-6 mb-4">
+            <h5 class="fw-bold mb-3" style="font-size: 16px;">Support</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="footer-link">Help Center</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Documentation</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Community</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Status</a></li>
+            </ul>
+          </div>
+
+          <!-- Legal Column -->
+          <div class="col-lg-2 col-md-6 col-6 mb-4">
+            <h5 class="fw-bold mb-3" style="font-size: 16px;">Legal</h5>
+            <ul class="list-unstyled">
+              <li class="mb-2"><a href="#" class="footer-link">Privacy Policy</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Terms of Service</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Cookie Policy</a></li>
+              <li class="mb-2"><a href="#" class="footer-link">Licenses</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="border-top mt-5 pt-4" style="border-color: rgba(255, 255, 255, 0.1) !important;">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+              <p class="mb-0" style="color: #64748b; font-size: 13px;">
+                © 2026 SuntiHear. All rights reserved.
+              </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+              <p class="mb-0" style="color: #64748b; font-size: 13px;">
+                Made with <i class="bi bi-heart-fill" style="color: #6366f1;"></i> for accessibility
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   
 </body>
 </html>

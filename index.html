@@ -29,6 +29,24 @@
       .avatar-custom { width: 28px; height: 28px; background: linear-gradient(135deg, #ec4899 0%, #f472b6 100%); border: 2px solid white; margin-left: -8px; }
       .avatar-custom:first-child { margin-left: 0; }
       .hero-section { background: linear-gradient(135deg, rgba(243, 240, 255, 0.9) 0%, rgba(250, 245, 255, 0.9) 100%), radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%), radial-gradient(circle at 90% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%) !important; }
+      .hero-section {
+        padding: 6rem 1.5rem 4rem 1.5rem;
+      }
+      @media (min-width: 992px) {
+        .hero-section {
+          padding: 7.5rem 3rem 5rem 3rem;
+        }
+        .display-4 {
+          font-size: 3.5rem;
+        }
+      }
+      @media (max-width: 767px) {
+        .alert-card-custom, .metric-card-custom {
+          position: relative !important;
+          margin: 1rem auto;
+          justify-content: center;
+        }
+      }
       .alert-card-custom { background-color: white; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); position: absolute; top: 20px; right: 20px; z-index: 10; }
       .alert-icon-success { width: 40px; height: 40px; background-color: #10b981; color: white; font-size: 20px; }
       .wristband-icon-custom { width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary-color) 0%, #8b5cf6 100%); color: white; font-size: 56px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3); }
@@ -114,83 +132,88 @@
     </nav>
 
     <!-- HERO SECTION -->
-    <section class="py-5 hero-section" style="padding: 120px 48px 80px 48px !important;">
-      <div class="container">
-        <div class="row g-5 align-items-center">
-          <!-- LEFT -->
-          <div class="col-lg-6 d-flex flex-column">
-            <div class="badge-custom px-3 py-2 rounded-pill mb-4 d-inline-flex align-items-center gap-2 w-fit">
-              <span class="badge-icon-custom rounded-circle d-flex align-items-center justify-content-center text-white"></span>
-              <span class="small fw-bold">Next-Gen Accessibility Tech</span>
+<section class="py-5 hero-section" >
+  <div class="container mt-5 pt-5 mb-5">
+    <div class="row g-4 g-lg-5 align-items-center">
+      
+      <!-- LEFT COLUMN -->
+      <div class="col-lg-6 d-flex flex-column">
+        <div class="badge-custom px-3 py-2 rounded-pill mb-3 d-inline-flex align-items-center gap-2 w-auto">
+          <span class="badge-icon-custom rounded-circle d-flex align-items-center justify-content-center text-white"></span>
+          <span class="small fw-bold">Next-Gen Accessibility Tech</span>
+        </div>
+
+        <h1 class="fw-bold mb-3 display-4">
+          SUNTI<span class="text-primary-accent">HEAR</span>
+        </h1>
+
+        <h2 class="h5 fw-bold mb-3 text-muted">
+          A wearable sound alert system for safer daily living
+        </h2>
+
+        <p class="mb-4 text-secondary" style="line-height: 1.6;">
+          Sunti Hear is a device that helps deaf and hard-of-hearing people know when important sounds happen around them. It listens for sounds like alarms or doorbells and shows clear visual alerts, making daily life safer and easier.
+        </p>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="col-lg-6">
+        <div class="bg-gradient-purple rounded-4 p-4 p-lg-5 position-relative">
+          <!-- ALERT CARD - TOP RIGHT -->
+          <div class="alert-card-custom rounded-3 p-2 p-md-3 d-flex align-items-center gap-2 gap-md-3 position-absolute top-0 end-0 m-3 m-md-4">
+            <span class="alert-icon-success bi bi-check2 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"></span>
+            <div>
+              <div class="small fw-bold text-muted text-uppercase">Alert Sent</div>
+              <div class="fw-bold">Fire Alarm</div>
             </div>
-
-            <h1 class="fw-bold mb-3" style="font-size: 64px; line-height: 1.1; color: #000;">
-              SUNTI<span class="text-primary-accent">HEAR</span>
-            </h1>
-
-            <h2 class="h4 fw-bold mb-3" style="color: var(--text-light);">A wearable sound alert system for safer daily living</h2>
-
-            <p class="fs-6 mb-4" style="color: var(--text-light); line-height: 1.7;">
-              Sunti Hear is a device that helps deaf and hard-of-hearing people know when important sounds happen around them. It listens for sounds like alarms or doorbells and shows clear visual alerts, making daily life safer and easier.
-            </p>
           </div>
 
-          <!-- RIGHT -->
-          <div class="col-lg-6">
-            <div class="bg-gradient-purple rounded-4 p-5" style="min-height: 300px; position: relative;">
-              <!-- ALERT CARD - TOP RIGHT -->
-              <div class="alert-card-custom rounded-3 p-3 d-flex align-items-center gap-3" style="width: fit-content;">
-                <span class="alert-icon-success bi bi-check 2 rounded-circle d-flex align-items-center justify-content-center flex-shrink-0"></span>
-                <div>
-                  <div class="small fw-bold text-muted text-uppercase">Alert Sent</div>
-                  <div class="fw-bold">Fire Alarm</div>
-                </div>
-              </div>
+          <!-- WRISTBAND IMAGE - CENTER -->
+          <div class="text-center my-4">
+            <img src="product.png" alt="SuntiHear Device" class="img-fluid" style="max-height: 350px;">
+          </div>
 
-              <!-- WRISTBAND - CENTER -->
-               <img src="product.png" alt="" srcset="">
-
-              <!-- METRIC CARD - BOTTOM LEFT -->
-              <div class="metric-card-custom rounded-3 p-3 d-flex align-items-center gap-3" style="width: fit-content;">
-                <span class="metric-icon-custom bi bi-graph-up-arrow rounded d-flex align-items-center justify-content-center flex-shrink-0"></span>
-                <div>
-                  <div class="small fw-bold text-muted">Accuracy</div>
-                  <div class="fw-bold">85.5%</div>
-                </div>
-              </div>
+          <!-- METRIC CARD - BOTTOM LEFT -->
+          <div class="metric-card-custom rounded-3 p-2 p-md-3 d-flex align-items-center gap-2 gap-md-3 position-absolute bottom-0 start-0 m-3 m-md-4">
+            <span class="metric-icon-custom bi bi-graph-up-arrow rounded d-flex align-items-center justify-content-center flex-shrink-0"></span>
+            <div>
+              <div class="small fw-bold text-muted">Accuracy</div>
+              <div class="fw-bold">85.5%</div>
             </div>
           </div>
         </div>
       </div>
-      <div class="container mt-4" >
-        <div class="row g-3 g-md-4 justify-content-center">
-          <div class="col-6 col-md-3">
-            <div class="stats-card stats-card-blue h-100 text-center">
-              <div class="stats-icon bi bi-lightning-charge" style="background: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);"></div>
-              <div class="fw-bold" style="font-size: 20px; color: #2563eb;">&lt;1s</div>
-              <div class="text-muted" style="font-size: 12px;">Response Time</div>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="stats-card stats-card-green h-100 text-center">
-              <div class="stats-icon bi bi-shield" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);"></div>
-              <div class="fw-bold" style="font-size: 20px; color: #0f9f6e;">85.5%</div>
-              <div class="text-muted" style="font-size: 12px;">Accuracy</div>
-            </div>
-          </div>
-          <div class="col-6 col-md-3">
-            <div class="stats-card stats-card-orange h-100 text-center">
-              <div class="stats-icon bi bi-broadcast" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);"></div>
-              <div class="fw-bold" style="font-size: 20px; color: #ea580c;">24/7</div>
-              <div class="text-muted" style="font-size: 12px;">Always On</div>
-            </div>
-          </div>
+
+    </div>
+  </div>
+
+  <!-- STATS ROW -->
+  <div class="container mt-4">
+    <div class="row g-3 g-md-4 justify-content-center text-center">
+      <div class="col-6 col-md-3">
+        <div class="stats-card stats-card-blue h-100">
+          <div class="stats-icon bi bi-lightning-charge mb-2" style="background: linear-gradient(135deg, #3b82f6 0%, #22d3ee 100%);"></div>
+          <div class="fw-bold text-primary mb-1">&lt;1s</div>
+          <div class="text-muted" style="font-size: 12px;">Response Time</div>
         </div>
       </div>
-    </section>
-
-
-    
+      <div class="col-6 col-md-3">
+        <div class="stats-card stats-card-green h-100">
+          <div class="stats-icon bi bi-shield mb-2" style="background: linear-gradient(135deg, #10b981 0%, #34d399 100%);"></div>
+          <div class="fw-bold text-success mb-1">85.5%</div>
+          <div class="text-muted" style="font-size: 12px;">Accuracy</div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="stats-card stats-card-orange h-100">
+          <div class="stats-icon bi bi-broadcast mb-2" style="background: linear-gradient(135deg, #f97316 0%, #ef4444 100%);"></div>
+          <div class="fw-bold text-warning mb-1">24/7</div>
+          <div class="text-muted" style="font-size: 12px;">Always On</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- WRISTBAND & FEATURES SECTION -->
     <section class="py-5" id="wristband-features" style="padding: 60px 48px !important;">
